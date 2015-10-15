@@ -1,10 +1,9 @@
 package calculadoraMetodos;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CalculadoraConMetodos {
-	
+
 	public static int Sumar(int num1, int num2) {
 		return (num1 + num2);
 	}
@@ -45,59 +44,79 @@ public class CalculadoraConMetodos {
 
 	public static void Leeropc() {
 		Scanner scn = new Scanner(System.in);
+		String cadena;
 		int opcion = 0;
-		opcion = scn.nextInt();
+		cadena = scn.nextLine();
+		boolean ciclo1 = true;
 		boolean ciclo = true;
 		do {
-			try {
-				switch (opcion) {
-				case 1:
-					System.out.println("La Suma es: " + Sumar(Leer(scn), Leer(scn)));
-					break;
-
-				case 2:
-					System.out.println("La Resta es: " + Restar(Leer(scn), Leer(scn)));
-					break;
-				case 3:
-					System.out.println("El Producto es: " + Multiplicar(Leer(scn), Leer(scn)));
-					break;
-				case 4:
-					System.out.println("El Cociente es: " + Dividir(Leer(scn), Leer(scn)));
-					break;
-				case 5:
-					System.out.println("El Mayor es: " + Mayor(Leer(scn), Leer(scn)));
-					break;
-				case 6:
-					System.out.println("La Potencia es: " + Potencia(Leer(scn), Leer(scn)));
-					break;
-				case 7:
-					Salir(scn);
-					break;
-
-				default:
-					System.out.println("-----------------------------------");
-					System.out.println("Opción inválida; ingrese de nuevo.");
-					break;
-
+			do {
+				if (cadena.matches("-{0,1}[1-9]{1,}")) {
+					opcion = Integer.parseInt(cadena);
+					ciclo = false;
+				} else {
+					System.out.println("Opcion Invalida.");
+					System.out.println("----------------");
+					System.out.println("Ingrese una Opcion:");
+					cadena = scn.nextLine();
 				}
-				while (opcion != 7)
-					Menu();
-				ciclo = false;
-			} catch (InputMismatchException exc) {
-				scn.nextLine();
-				System.out.println("Solo se Aceptan Números");
-			} catch (ArithmeticException exc) {
-				scn.nextLine();
-				System.out.println("No se Acepta CERO como Divisor");
-			}
+			} while (ciclo);
+			switch (opcion) {
+			case 1:
+				System.out.println("La Suma es: " + Sumar(Leer(scn), Leer(scn)));
+				break;
 
-		} while (ciclo);
+			case 2:
+				System.out.println("La Resta es: " + Restar(Leer(scn), Leer(scn)));
+				break;
+			case 3:
+				System.out.println("El Producto es: " + Multiplicar(Leer(scn), Leer(scn)));
+				break;
+			case 4:
+				System.out.println("El Cociente es: " + Dividir(Leer(scn), Leer(scn)));
+				break;
+			case 5:
+				System.out.println("El Mayor es: " + Mayor(Leer(scn), Leer(scn)));
+				break;
+			case 6:
+				System.out.println("La Potencia es: " + Potencia(Leer(scn), Leer(scn)));
+				break;
+			case 7:
+				Salir(scn);
+				break;
+
+			default:
+				System.out.println("-----------------------------------");
+				System.out.println("Opción inválida; ingrese de nuevo.");
+				break;
+
+			}
+			while (opcion != 7)
+				Menu();
+			ciclo1 = false;
+
+		} while (ciclo1);
 
 	}
 
 	public static int Leer(Scanner scn) {
+		int numero = 0;
+		boolean ciclo = true;
 		System.out.println("Ingrese un Numero:");
-		return scn.nextInt();
+		String cadena;
+		cadena = scn.nextLine();
+		do {
+			if (cadena.matches("-{0,1}[1-9]{1,}")) {
+				numero = Integer.parseInt(cadena);
+				ciclo = false;
+			} else {
+				System.out.println("No es un Número.");
+				System.out.println("----------------");
+				System.out.println("Ingrese un Número:");
+				cadena = scn.nextLine();
+			}
+		} while (ciclo);
+		return numero;
 	}
 
 	public static void Salir(Scanner scn) {
@@ -123,19 +142,9 @@ public class CalculadoraConMetodos {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Scanner scn = new Scanner(System.in);
-		boolean ciclo = true;
-		do {
-			try {
-				Menu();
-				ciclo = false;
-			} catch (InputMismatchException exc) {
 
-				System.out.println("Solo se Aceptan Números");
+		Menu();
 
-			}
-		} while (ciclo);
-		scn.close();
 	}
 
 }
