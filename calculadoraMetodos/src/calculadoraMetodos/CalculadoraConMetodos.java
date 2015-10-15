@@ -51,7 +51,7 @@ public class CalculadoraConMetodos {
 		boolean ciclo = true;
 		do {
 			do {
-				if (cadena.matches("-{0,1}[1-9]{1,}")) {
+				if (cadena.matches("[0-9]")) {
 					opcion = Integer.parseInt(cadena);
 					ciclo = false;
 				} else {
@@ -106,7 +106,7 @@ public class CalculadoraConMetodos {
 		String cadena;
 		cadena = scn.nextLine();
 		do {
-			if (cadena.matches("-{0,1}[1-9]{1,}")) {
+			if (cadena.matches("[0-9]")) {
 				numero = Integer.parseInt(cadena);
 				ciclo = false;
 			} else {
